@@ -1,0 +1,57 @@
+---
+title: "Old Faithful Eruptions"
+output: flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared
+# by all users of the dashboard
+library(datasets)
+library(plotly)
+data(faithful)
+```
+
+Column {.sidebar}
+--------------------------------------------------
+
+Waiting time between eruptions and the duration of the eruption
+for the Old Faithful geyser in Yellowstone National Park,
+Wyoming, USA.
+
+```{r}
+selectInput(
+  "n_breaks", label = "Number of bins:",
+  choices = c(10, 20, 35, 50), selected = 20
+)
+
+sliderInput(
+  "bw_adjust", label = "Bandwidth adjustment:",
+  min = 0.2, max = 2, value = 1, step = 0.2
+)
+```
+
+Column
+--------------------------------------------------
+
+### Geyser Eruption Duration
+
+```{r}
+renderPlotly({
+fit <- density(faithful$eruptions, adjust = input$bw_adjust)
+faithful %>%
+  plot_ly(x = ~eruptions,
+          marker = list(line = list(color = 'rgba(0, 0, 152, .8)',
+                                    width = 2)),
+          opacity = 0.5) %>%
+  add_histogram(name="eruptions", nbinsx=input$n_breaks) %>%
+  add_trace(x = fit$x, y = fit$y, fill = "tozeroy", yaxis = "y2", 
+            type="scatter", mode="markers1", name="density",
+            marker = list(line = list(color = 'rgba(0, 0, 152, .8)', 
+                                      width = 1))) %>% 
+  layout(yaxis2 = list(overlaying = "y", side = "right"))
+
+  
+})
+
+```
