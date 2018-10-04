@@ -1,0 +1,127 @@
+---
+title: My Favorite Dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+
+
+# includes
+library(flexdashboard)
+
+# Access to all the code that does the work of talking to
+# elasticsearch and getting all the data
+# source files to include for global declarations
+# and utility functions
+
+
+
+# read all the data
+
+```
+
+
+Tab1 Title
+=======================================================================
+
+Row
+-----------------------------------------------------------------------
+
+### Value box 1 {.value-box}
+
+```{r}
+# Add up the numbers of subs across each gw/beam
+renderValueBox({
+  valueBox(
+    value = 10,
+    color = "primary"
+  )
+})
+```
+
+### Value box 2  {.value-box}
+
+```{r}
+
+renderValueBox({
+  
+  valueBox(
+    value = 11,
+    color = "primary"
+  )
+})
+```
+
+### Value box 3 {.value-box}
+
+```{r}
+renderValueBox({
+  
+  valueBox(
+    value = 12,
+    color = "primary"
+  )
+})
+
+```
+
+
+Row
+-----------------------------------------------------------------------
+
+### chart 1 title {data-width=840}
+
+```{r}
+
+```
+
+### table 1 {data-width=300}
+
+```{r}
+
+```
+
+Tab 2 title
+=======================================================================
+
+Inputs {.sidebar data-width=250}
+-----------------------------------------------------------------------
+
+### topic 1
+
+```{r}
+renderText("some text1")
+```
+
+### topic 2
+
+```{r}
+renderText("some text2")
+```
+
+Row
+-----------------------------------------------------------------------
+
+### chart 1
+```{r}
+
+```
+
+### chart 2
+```{r}
+
+```
+
+Tab3 title
+=======================================================================
+```{r}
+renderText("some text")
+```
+
+Row
+-----------------------------------------------------------------------
+```{r}
+```
