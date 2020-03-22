@@ -5,6 +5,7 @@ runtime: shiny
 ---
 
 ```{r global, include=FALSE}
+library(flexdashboard)
 # load data in 'global' chunk so it can be shared
 # by all users of the dashboard
 library(datasets)
