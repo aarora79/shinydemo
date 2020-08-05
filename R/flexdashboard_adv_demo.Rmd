@@ -12,14 +12,7 @@ runtime: shiny
 # includes
 library(flexdashboard)
 
-# Access to all the code that does the work of talking to
-# elasticsearch and getting all the data
-# source files to include for global declarations
-# and utility functions
-
-
-
-# read all the data
+# do all data wrangling here
 
 ```
 
